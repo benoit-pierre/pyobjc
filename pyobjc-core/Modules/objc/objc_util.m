@@ -773,18 +773,6 @@ PyObjC_PythonToCArray(
     }
 
     if (*elementType == _C_UNICHAR && PyUnicode_Check(pythonList)) {
-        Py_ssize_t bufsize = PyUnicode_GetSize(pythonList);
-
-        if (*size == -1) {
-            *size = bufsize;
-
-        } else if ((exactSize && *size != bufsize) || (!exactSize && *size > bufsize)) {
-            PyErr_Format(PyExc_ValueError,
-                "Requesting unicode buffer of %"PY_FORMAT_SIZE_T"d, have unicode buffer "
-                "of %"PY_FORMAT_SIZE_T"d", *size, bufsize);
-            return -1;
-        }
-
 #if PY_VERSION_HEX >= 0x03030000
         *bufobj = _PyUnicode_EncodeUTF16(
             pythonList, NULL,
@@ -796,6 +784,18 @@ PyObjC_PythonToCArray(
         );
 
         if (*bufobj == NULL) {
+            return -1;
+        }
+
+        Py_ssize_t bufsize = PyBytes_Size(*bufobj) / 2;
+
+        if (*size == -1) {
+            *size = bufsize;
+
+        } else if ((exactSize && *size != bufsize) || (!exactSize && *size > bufsize)) {
+            PyErr_Format(PyExc_ValueError,
+                "Requesting unicode buffer of %"PY_FORMAT_SIZE_T"d, have unicode buffer "
+                "of %"PY_FORMAT_SIZE_T"d", *size, bufsize);
             return -1;
         }
 
