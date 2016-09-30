@@ -5,7 +5,7 @@
  * Central include file for PyObjC.
  */
 
-#define OBJC_VERSION "3.1.1+plover"
+#define OBJC_VERSION "3.1.1+plover2"
 
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
