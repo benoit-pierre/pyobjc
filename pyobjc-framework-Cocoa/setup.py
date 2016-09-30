@@ -12,7 +12,7 @@ import os
 
 setup(
     name='pyobjc-framework-Cocoa',
-    version="3.1.1",
+    version="3.1.1+plover2",
     description = "Wrappers for the Cocoa frameworks on Mac OS X",
     long_description=__doc__,
     packages = [ "Cocoa", "CoreFoundation", "Foundation", "AppKit", "PyObjCTools" ],
