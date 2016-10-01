@@ -1,0 +1,28 @@
+language: generic
+
+matrix:
+  include:
+    # OSX / Python 3
+    - os: osx
+      osx_image: xcode8
+      env:
+        - PYTHON=python3
+
+cache:
+  directories:
+    - .cache
+
+install:
+  - ./travis.sh setup
+
+script:
+  - ./travis.sh build
+
+deploy:
+  on: travis
+  skip_cleanup: true
+  provider: bintray
+  file: bintray.json
+  user: benoit-pierre
+  key:
+    secure: gikKVHfaw3AgXQ6Nkkkj9EcXYDSSCYxlwqF937FTgEChLgqoyFyNSanBhZvUeefSoqcGj+fOltUUnOuNAHWGYI7RYah+PtL/uHBZg4lMYAwT0YegH7nwnWHutFR4vCU6JYD48uCG9eg1a20hZekgb4P9yg3gvdSwBTtDSow60KK3v73FYHw1tNMgArjN8lMzWdYtyM4HYN40fPUv1NIOuZgzbsOT6g3c/sw2r8qAxQDeKrqyVWCglT5stLZXs8WQZuYjT/0kpu4XqvIZeNjdsnRUdFgbH92JqzWl8aHP8DNKPPRdndnXsLd0IBaunifVwBA1futpNdVSiMDwQywlHg7aEQtgpo5fI+S2Jm+atZngORcq0rQ1dQwqz55R8PggybM4AQgl/inV8/EwtoQ8Hsrj38jwPXMs5E1D2mZjC+THEVzo+t010l5OvebZz+/xOe69kY6Hd7Rmsi3liaxakQRfTELuSPuH7zXXCq0LCA2FC2wBJPlqPKL+cdQTHX1MSNf+500dj+D7zdOKrTMt7qnExb0+GnWE+ZOjMai5FXVpn1OBsZ3FhEezeVJgXit4Qi0mUykfLkdPdu3oaBxBH+BzeNqORSrAAiiF7cqJalNm9xzpatBn3l6LDh+q0Z5FV9YmCS9o/G89Zt8EEzJnguVIITFGcClQQkroin7IFho=

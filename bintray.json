@@ -1,0 +1,23 @@
+{
+  "package": {
+    "name": "PyObjC",
+    "repo": "generic",
+    "subject": "benoit-pierre"
+  },
+
+  "version": {
+    "name": "3.1.1+plover2.r2",
+    "desc": "Custom patched version for Plover.",
+    "released": "2016-09-30",
+    "vcs_tag": "pyobjc-3.1.1+plover2",
+    "gpgSign": false
+  },
+
+  "files":
+  [{
+    "includePattern": "dist/(.*\.whl|.*\.tar.gz)",
+    "uploadPattern": "$1",
+    "matrixParams": { "override": 1 }
+  }],
+  "publish": true
+}
